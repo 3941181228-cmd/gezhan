@@ -201,7 +201,7 @@ function PlanetSky() {
           {/* 主体星球 */}
           <circle className="planet-core" cx={planet.cx} cy={planet.cy} r={6} />
           {/* 分类标签 */}
-          <text className="planet-label" x={planet.lx} y={planet.ly} textAnchor={planet.anchor}>{planet.label}</text>
+          <text className="planet-label" x={planet.lx} y={planet.ly} textAnchor={planet.anchor as "start" | "middle" | "end"}>{planet.label}</text>
         </a>
       ))}
     </svg>
