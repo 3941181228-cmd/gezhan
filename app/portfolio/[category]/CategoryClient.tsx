@@ -26,7 +26,7 @@ const categoryData: Record<string, CategoryMeta> = {
     // 广丰作品集:worker/广丰 下 21 张 3840×2160 原图,按 Figma 导出顺序编号 01-21
     works: Array.from({ length: 21 }, (_, i) => ({
       id: i + 1,
-      src: `/works/guangfeng/${String(i + 1).padStart(2, "0")}.png`,
+      src: `/works/guangfeng/${String(i + 1).padStart(2, "0")}.webp`,
     })),
   },
   baic: {
@@ -35,7 +35,7 @@ const categoryData: Record<string, CategoryMeta> = {
     // 北汽作品集:worker/北汽 下 27 张 @2x 原图,按序号 01-27
     works: Array.from({ length: 27 }, (_, i) => ({
       id: i + 1,
-      src: `/works/beiqi/${String(i + 1).padStart(2, "0")}.png`,
+      src: `/works/beiqi/${String(i + 1).padStart(2, "0")}.webp`,
     })),
   },
   linglong: {
@@ -44,7 +44,7 @@ const categoryData: Record<string, CategoryMeta> = {
     // 玲珑智慧屏作品集:worker/玲珑智慧屏 下 8 张 @2x 原图,按序号 01-08
     works: Array.from({ length: 8 }, (_, i) => ({
       id: i + 1,
-      src: `/works/linglong/${String(i + 1).padStart(2, "0")}.png`,
+      src: `/works/linglong/${String(i + 1).padStart(2, "0")}.webp`,
     })),
   },
   carlot: {
@@ -53,7 +53,7 @@ const categoryData: Record<string, CategoryMeta> = {
     // 岚图CarLot平台作品集:worker/岚图CarLot平台 下 64 张 @2x 原图,按序号 01-64
     works: Array.from({ length: 64 }, (_, i) => ({
       id: i + 1,
-      src: `/works/carlot/${String(i + 1).padStart(2, "0")}.png`,
+      src: `/works/carlot/${String(i + 1).padStart(2, "0")}.webp`,
     })),
   },
   ip: {
@@ -62,7 +62,7 @@ const categoryData: Record<string, CategoryMeta> = {
     // IP形象作品集:worker/ip 下 19 张原图,按序号排列
     works: Array.from({ length: 19 }, (_, i) => ({
       id: i + 1,
-      src: `/works/ip/${i + 1}.png`,
+      src: `/works/ip/${i + 1}.webp`,
     })),
   },
   // HMI Agent Studio:嵌入 worker/功能整合web 构建产物的可交互预览(iframe)

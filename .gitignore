@@ -50,3 +50,6 @@ node_modules/
 
 # embedded worker project (4GB, has own .git; preview built into public/hmi-agent)
 worker/功能整合web/
+
+# 作品集原图(PNG)不部署,只用 WebP;磁盘保留 PNG 供本地备用
+public/works/**/*.png
