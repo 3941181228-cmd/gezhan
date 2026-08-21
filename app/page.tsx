@@ -611,7 +611,7 @@ export default function Home() {
           </div>
         </section>
         <Constellation />
-        <a className="explore-work" href="#work"><i /><span>EXPLORE MY WORK!</span><i /></a>
+        <a className="explore-work" href="/portfolio/"><i /><span>EXPLORE MY WORK!</span><i /></a>
       </main>
     </div>
   );
