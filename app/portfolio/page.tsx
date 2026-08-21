@@ -26,7 +26,7 @@ const planets = [
   { id: "linglong", label: "玲珑智慧屏", cx: 195, cy: 175, lx: 215, ly: 197, anchor: "start" }, // β Arietis(Sheratan,西偏东,紧邻γ)
   { id: "carlot", label: "岚图CarLot平台", cx: 340, cy: 55, lx: 340, ly: 35, anchor: "middle" }, // 41 Arietis(北偏东)
   { id: "ip", label: "IP形象", cx: 310, cy: 175, lx: 330, ly: 155, anchor: "start" },           // α Arietis(Hamal,最亮,中央)
-  { id: "hmi-agent", label: "HMI Agent Studio", cx: 470, cy: 280, lx: 490, ly: 286, anchor: "start" }, // δ Arietis(Botein,东南)
+  { id: "hmi-agent", label: "HMI Agent Studio", cx: 470, cy: 280, lx: 450, ly: 286, anchor: "end" }, // δ Arietis(Botein,东南),标签右对齐向左延伸,避免超出 viewBox 右边界被裁切
 ];
 
 // StarField / GridLines / BrandGlyph / Chrome 与联系页保持一致,保证站点 chrome 统一
