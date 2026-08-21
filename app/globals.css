@@ -1397,20 +1397,23 @@ a { color: inherit; }
   background: rgba(255, 255, 255, .08);
 }
 
-/* iframe 挂载区:16:10 比例,最小高度保证工作台可用 */
+/* iframe 挂载区:JS 按容器宽度计算高度(桌面尺寸 1280×800 等比缩放);aspect-ratio 仅为 JS 生效前的兜底 */
 .hmi-preview-frame {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 10;
-  min-height: 560px;
+  min-height: 480px;
   background: #0b0e13;
+  /* 窄屏按高度适配时,缩放后的 iframe 比容器宽,裁掉两侧溢出 */
+  overflow: hidden;
 }
 
 .hmi-preview-iframe {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  top: 0;
+  left: 0;
+  /* 宽高由 JS 内联指定(1280×800),从左上角等比缩放适配容器 */
+  transform-origin: top left;
   border: 0;
   display: block;
 }
@@ -1426,7 +1429,6 @@ a { color: inherit; }
 }
 
 @media (max-width: 991px) {
-  .hmi-preview-frame { min-height: 480px; }
   .hmi-preview-bar { flex-wrap: wrap; gap: 10px; }
   .hmi-preview-url { order: 3; flex-basis: 100%; }
 }

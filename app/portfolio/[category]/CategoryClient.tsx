@@ -233,6 +233,40 @@ export default function CategoryPage() {
   // 交互预览 iframe 的重载 key:自增后强制 iframe 重新挂载,实现"重新加载"
   const [iframeKey, setIframeKey] = useState(0);
 
+  // ===== 预览自适应缩放 =====
+  // HMI 应用按桌面尺寸(1280×800)渲染,再整体等比缩放适配容器宽度
+  // 手机等窄屏下保持桌面布局比例,避免内容被挤压变形(比例奇怪)
+  const PREVIEW_W = 1280;
+  const PREVIEW_H = 800;
+  const frameRef = useRef<HTMLDivElement>(null);
+  const [previewScale, setPreviewScale] = useState(1);
+
+  useEffect(() => {
+    const el = frameRef.current;
+    if (!el) return;
+    const update = () => {
+      const w = el.clientWidth;
+      if (w <= 0) return;
+      // 最小可用高度:窄屏 480px / 宽屏 560px,低于该值改按高度适配(两侧裁切)
+      const minH = window.innerWidth <= 991 ? 480 : 560;
+      // 取"按宽度适配"与"按最小高度适配"的较大者,保证画面完整且可用
+      const scale = Math.max(w / PREVIEW_W, minH / PREVIEW_H);
+      el.style.height = `${Math.round(PREVIEW_H * scale)}px`;
+      // 按高度适配时 iframe 比容器宽,水平居中后再裁两侧,避免内容偏左
+      const offsetX = (w - PREVIEW_W * scale) / 2;
+      el.style.setProperty("--preview-offset-x", `${offsetX}px`);
+      setPreviewScale(scale);
+    };
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    window.addEventListener("resize", update);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
   useEffect(() => {
     const timer = window.setTimeout(() => setReady(true), 90);
     return () => window.clearTimeout(timer);
@@ -340,12 +374,14 @@ export default function CategoryPage() {
               </div>
             </div>
             {/* iframe 挂载区:应用使用 HashRouter,内部跳转均在此窗口完成 */}
-            <div className="hmi-preview-frame">
+            {/* iframe 固定按桌面尺寸 1280×800 渲染,通过 transform 等比缩放适配容器(手机自适应) */}
+            <div className="hmi-preview-frame" ref={frameRef}>
               <iframe
                 key={iframeKey}
                 src={meta.previewSrc}
                 title="HMI Agent Studio 交互预览"
                 className="hmi-preview-iframe"
+                style={{ width: PREVIEW_W, height: PREVIEW_H, transform: `translateX(var(--preview-offset-x, 0px)) scale(${previewScale})` }}
                 allow="fullscreen"
               />
             </div>
